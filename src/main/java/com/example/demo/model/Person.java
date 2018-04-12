@@ -1,20 +1,18 @@
 package com.example.demo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Entity()
-//@Table(ta="PersonData")
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "persons") // @Document annotation is used at the class level, Which identifies a domain object / pojo is going to be persisted to MongoDB database
 public class Person {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long personId;
-	String firstName;
-	String lastName;
+	private String id;
+	private String firstName;
+	private String lastName;
+	private Address address;
 	
 	public String getFirstName() {
 		return firstName;
@@ -28,13 +26,24 @@ public class Person {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public Long getPersonId() {
-		return personId;
+	
+	public Address getAddress() {
+		return address;
 	}
-	public void setPersonId(Long personId) {
-		this.personId = personId;
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	
+	@Override
+	public String toString() {
+		return "Person [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", address=" + address
+				+ "]";
+	}
 	
-
 }

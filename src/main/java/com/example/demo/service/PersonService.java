@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,16 +24,16 @@ public class PersonService {
 		repository.save(p);
 	}
 	
-	@Transactional
-	public void updatePerson(Person p, Long personId) {
-		p.setPersonId(personId);
+	//@Transactional
+	public void updatePerson(Person p) {
+		//p.setId(personId);
 		repository.save(p);
 		System.out.println(" Person is updated in the repo");
 	}
 	
-	public Collection<Person> findAll() {
+	/*public Collection<Person> findAll() {
 		return repository.findAll();
-	}
+	}*/
 	
 	public Person findByPersonId(Long personId) throws ResourceNotFoundException{
 		try {

@@ -1,0 +1,10 @@
+applications:
+- name: pcfdata
+  disk_quota: 1G
+  instances: 1
+  memory: 1G
+  routes:
+  - route: springbootdataproject.cfapps.io
+  services:
+  - postgres-local
+  stack: cflinuxfs2
